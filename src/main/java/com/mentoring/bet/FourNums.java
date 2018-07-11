@@ -1,5 +1,6 @@
 package com.mentoring.bet;
 
+import java.util.Random;
 import java.util.stream.IntStream;
 
 import static com.mentoring.bet.Dozen.getRandomNumFromArray;
@@ -7,22 +8,59 @@ import static com.mentoring.bet.Dozen.getRandomNumFromArray;
 public class FourNums {
 
     public int[] returnFourNums() {
-        int rndmStartNum = getRandomNumFromArray(startNums());
-        int endNum = rndmStartNum + 4;
-        int[] fiveNumsRange = IntStream.rangeClosed(rndmStartNum, endNum).toArray();
-        int[] fourNumsRange = new int[4];
-        int j = 0;
-        for (int i = 0; i < fiveNumsRange.length; i++) {
-            if (i == 2) {
-                i++;
+        //how to rotate
+        Random rnd = new Random();
+        boolean rotate = rnd.nextBoolean();
+
+        int[] table = IntStream.rangeClosed(1, 36).toArray();
+        int strtNm = getRandomNumFromArray(table);
+        int[] returnRandomFourNumbs = new int[4];
+
+        if (strtNm % 3 == 1 || strtNm % 3 == 2) {
+            if (strtNm >= 4 && strtNm <= 32) {
+                if (rotate) {
+                    returnRandomFourNumbs[0] = strtNm;
+                    returnRandomFourNumbs[1] = strtNm + 1;
+                    returnRandomFourNumbs[2] = strtNm + 3;
+                    returnRandomFourNumbs[3] = strtNm + 4;
+                } else {
+                    returnRandomFourNumbs[0] = strtNm;
+                    returnRandomFourNumbs[1] = strtNm + 1;
+                    returnRandomFourNumbs[2] = strtNm - 2;
+                    returnRandomFourNumbs[3] = strtNm - 3;
+                }
             }
-            fourNumsRange[j] = fiveNumsRange[i];
-            j++;
+            if (strtNm == 35 || strtNm == 34) {
+                returnRandomFourNumbs[0] = strtNm;
+                returnRandomFourNumbs[1] = strtNm + 1;
+                returnRandomFourNumbs[2] = strtNm - 2;
+                returnRandomFourNumbs[3] = strtNm - 3;
+            } else {
+                returnRandomFourNumbs[0] = strtNm;
+                returnRandomFourNumbs[1] = strtNm + 1;
+                returnRandomFourNumbs[2] = strtNm + 3;
+                returnRandomFourNumbs[3] = strtNm + 4;
+            }
+        } else {
+            //6-36
+            if (rotate || strtNm == 36) {
+                returnRandomFourNumbs[0] = strtNm;
+                returnRandomFourNumbs[1] = strtNm - 1;
+                returnRandomFourNumbs[2] = strtNm - 3;
+                returnRandomFourNumbs[3] = strtNm - 4;
+                //3-33
+            } else {
+                returnRandomFourNumbs[0] = strtNm;
+                returnRandomFourNumbs[1] = strtNm - 1;
+                returnRandomFourNumbs[2] = strtNm + 2;
+                returnRandomFourNumbs[3] = strtNm + 3;
+            }
         }
-        return fourNumsRange;
+        return returnRandomFourNumbs;
     }
 
-    public int[] startNums() {
-        return IntStream.rangeClosed(1, 36).filter(n -> n % 3 != 0).toArray();
-    }
+
 }
+
+
+

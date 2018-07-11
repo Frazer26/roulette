@@ -1,5 +1,6 @@
 package com.mentoring.bet;
 
+import java.util.Random;
 import java.util.stream.IntStream;
 
 import static com.mentoring.bet.Dozen.getRandomNumFromArray;
@@ -7,9 +8,43 @@ import static com.mentoring.bet.Dozen.getRandomNumFromArray;
 public class ThreeNums {
 
     public int[] returnThreeNums() {
-        int[] startNumsArray = IntStream.rangeClosed(1, 36).filter(n -> n % 3 == 1).toArray();
-        int startNumHorizontal = getRandomNumFromArray(startNumsArray);
-        return IntStream.rangeClosed(startNumHorizontal, startNumHorizontal + 2).toArray();
+        Random rnd = new Random();
+        boolean isHorizontal = rnd.nextBoolean();
+
+        int[] table = IntStream.rangeClosed(1, 36).toArray();
+        int strtNm = getRandomNumFromArray(table);
+        int[] returnThreeNum = new int[3];
+
+        if (isHorizontal) {
+            if (strtNm % 3 == 1) {
+                returnThreeNum[0] = strtNm;
+                returnThreeNum[1] = strtNm + 1;
+                returnThreeNum[2] = strtNm + 2;
+            } else if (strtNm % 3 == 0) {
+                returnThreeNum[0] = strtNm;
+                returnThreeNum[1] = strtNm - 1;
+                returnThreeNum[2] = strtNm - 2;
+            } else {
+                returnThreeNum[0] = strtNm;
+                returnThreeNum[1] = strtNm - 1;
+                returnThreeNum[2] = strtNm + 1;
+            }
+        } else {
+            if (strtNm >= 1 && strtNm <= 3) {
+                returnThreeNum[0] = strtNm;
+                returnThreeNum[1] = strtNm + 3;
+                returnThreeNum[2] = strtNm + 6;
+            } else if (strtNm >= 34 && strtNm <= 36) {
+                returnThreeNum[0] = strtNm;
+                returnThreeNum[1] = strtNm - 3;
+                returnThreeNum[2] = strtNm - 6;
+            } else {
+                returnThreeNum[0] = strtNm;
+                returnThreeNum[1] = strtNm - 3;
+                returnThreeNum[2] = strtNm + 3;
+            }
+        }
+        return returnThreeNum;
     }
 
 }
