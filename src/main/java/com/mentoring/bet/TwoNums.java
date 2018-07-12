@@ -1,23 +1,57 @@
 package com.mentoring.bet;
 
-import com.mentoring.roulette.Table;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
+
+import static com.mentoring.bet.Dozen.getRandomNumFromArray;
 
 public class TwoNums {
 
-//    public int[] returnTwoNums() {
-//        int[][] table = Table.updateTable();
-//        for (int i = 1; i < 12; i++) {
-//            for (int j = 0; j < 2; j++) {
-////                [table[i][j]][table[i][j] + 1]
-////                [table[i][j]][table[i][j] + 3]
-//            }
-//
-//        }
-//
-//
-//    }
+    public int[] returnTwoNums() {
+
+        Random rnd = new Random();
+        int[] table = IntStream.rangeClosed(1, 36).toArray();
+        int strtNm = getRandomNumFromArray(table);
+        ArrayList<Integer> possibleAdjacentNumbs = new ArrayList<>();
+
+        if (strtNm == 1) {
+            possibleAdjacentNumbs.add(strtNm + 1);
+            possibleAdjacentNumbs.add(strtNm + 3);
+        } else if (strtNm == 2) {
+            possibleAdjacentNumbs.add(strtNm - 1);
+            possibleAdjacentNumbs.add(strtNm + 1);
+            possibleAdjacentNumbs.add(strtNm + 3);
+        } else if (strtNm == 3) {
+            possibleAdjacentNumbs.add(strtNm - 1);
+            possibleAdjacentNumbs.add(strtNm + 3);
+        } else if (strtNm == 34) {
+            possibleAdjacentNumbs.add(strtNm + 1);
+            possibleAdjacentNumbs.add(strtNm - 3);
+        } else if (strtNm == 35) {
+            possibleAdjacentNumbs.add(strtNm - 1);
+            possibleAdjacentNumbs.add(strtNm + 1);
+            possibleAdjacentNumbs.add(strtNm - 3);
+        } else if (strtNm == 36) {
+            possibleAdjacentNumbs.add(strtNm - 3);
+            possibleAdjacentNumbs.add(strtNm - 1);
+        } else if (strtNm % 3 == 2) {
+            possibleAdjacentNumbs.add(strtNm - 1);
+            possibleAdjacentNumbs.add(strtNm + 1);
+            possibleAdjacentNumbs.add(strtNm + 3);
+            possibleAdjacentNumbs.add(strtNm - 3);
+        } else if (strtNm % 3 == 1) {
+            possibleAdjacentNumbs.add(strtNm + 1);
+            possibleAdjacentNumbs.add(strtNm + 3);
+            possibleAdjacentNumbs.add(strtNm - 3);
+        } else if (strtNm % 3 == 0) {
+            possibleAdjacentNumbs.add(strtNm - 1);
+            possibleAdjacentNumbs.add(strtNm + 3);
+            possibleAdjacentNumbs.add(strtNm - 3);
+        }
+
+        int rndmItemFromArrayList = possibleAdjacentNumbs.get(rnd.nextInt(possibleAdjacentNumbs.size()));
+
+        return new int[]{strtNm, rndmItemFromArrayList};
+    }
 }
