@@ -1,24 +1,40 @@
 package com.mentoring.roulette;
 
+import com.mentoring.roulette.bet.Bet;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
     private String name;
     private int money;
     private boolean isInPlay;
+    private List<Bet> listOfBets;
 
-    public Player() {
+    public Player(String name, int money) {
+        this.name = name;
+        this.money = money;
+        isInPlay = true;
+        listOfBets = new ArrayList<>;
     }
 
-    public void bet() {
-
+    public void clearBets() {
+        listOfBets.clear();
     }
 
-    public void outOfTheGame() {
+    public void makeBet() {
+        Bet bet = generate(money);
+        int betAmount = bet.getAmount() * -1;
 
+        setListOfBets(bet);
+        setMoney(betAmount);
     }
 
-    public void win() {
-
+    public void lose() {
+        if (money == 0) {
+            isInPlay = false;
+        }
     }
 
     public String getName() {
@@ -34,7 +50,7 @@ public class Player {
     }
 
     public void setMoney(int money) {
-        this.money = money;
+        this.money += money;
     }
 
     public boolean isInPlay() {
@@ -43,5 +59,13 @@ public class Player {
 
     public void setInPlay(boolean inPlay) {
         isInPlay = inPlay;
+    }
+
+    public List<Bet> getListOfBets() {
+        return listOfBets;
+    }
+
+    public void setListOfBets(Bet bet) {
+        this.listOfBets.add(bet);
     }
 }
