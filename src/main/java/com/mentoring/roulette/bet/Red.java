@@ -1,18 +1,22 @@
 package com.mentoring.roulette.bet;
 
-public class Red {
+public class Red implements BetType {
 
-    public int[] updateRedNums(){
+    public int[] playedNumbers() {
         int[] redNums = new int[18];
         int j = 0;
-        for(int i = 0; i<18; i++, j++){
-            if(i==5 || i==14){
+        for (int i = 0; i < 18; i++, j++) {
+            if (i == 5 || i == 14) {
                 j++;
-            }else if(i==9){
+            } else if (i == 9) {
                 j--;
             }
             redNums[i] = ++j;
         }
         return redNums;
+    }
+
+    public int getMultiplier() {
+        return 2;
     }
 }

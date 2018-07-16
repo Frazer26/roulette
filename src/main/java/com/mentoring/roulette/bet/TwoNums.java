@@ -6,9 +6,9 @@ import java.util.stream.IntStream;
 
 import static com.mentoring.roulette.bet.Dozen.getRandomNumFromArray;
 
-public class TwoNums {
+public class TwoNums implements BetType {
 
-    public int[] returnTwoNums() {
+    public int[] playedNumbers() {
 
         Random rnd = new Random();
         int[] table = IntStream.rangeClosed(1, 36).toArray();
@@ -53,5 +53,9 @@ public class TwoNums {
         int rndmItemFromArrayList = possibleAdjacentNumbs.get(rnd.nextInt(possibleAdjacentNumbs.size()));
 
         return new int[]{strtNm, rndmItemFromArrayList};
+    }
+
+    public int getMultiplier() {
+        return 18;
     }
 }

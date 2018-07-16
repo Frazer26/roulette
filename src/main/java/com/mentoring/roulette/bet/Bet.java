@@ -1,20 +1,21 @@
 package com.mentoring.roulette.bet;
 
 public class Bet {
-    BetType bet;
-    int amount;
+    private BetType betType;
+    private int amount;  //how much do I play (dollar, ft, etc.)?
+    private int prize; //how much do I win?
 
-    public Bet(BetType bet, int amount) {
-        this.bet = bet;
+    public Bet(BetType betType, int amount) {
+        this.betType = betType;
         this.amount = amount;
     }
 
-    public BetType getBet() {
-        return bet;
+    public BetType getBetType() {
+        return betType;
     }
 
-    public void setBet(BetType bet) {
-        this.bet = bet;
+    public void setBetType(BetType betType) {
+        this.betType = betType;
     }
 
     public int getAmount() {
@@ -25,4 +26,11 @@ public class Bet {
         this.amount = amount;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
+    public void setPrize(int prize) {
+        this.prize = prize;
+    }
 }

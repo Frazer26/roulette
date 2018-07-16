@@ -5,9 +5,9 @@ import java.util.stream.IntStream;
 
 import static com.mentoring.roulette.bet.Dozen.getRandomNumFromArray;
 
-public class FourNums {
+public class FourNums implements BetType {
 
-    public int[] returnFourNums() {
+    public int[] playedNumbers() {
         //how to rotate
         Random rnd = new Random();
         boolean rotate = rnd.nextBoolean();
@@ -59,6 +59,9 @@ public class FourNums {
         return returnRandomFourNumbs;
     }
 
+    public int getMultiplier() {
+        return 9;
+    }
 
 }
 

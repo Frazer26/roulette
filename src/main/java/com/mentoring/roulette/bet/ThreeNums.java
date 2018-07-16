@@ -5,9 +5,9 @@ import java.util.stream.IntStream;
 
 import static com.mentoring.roulette.bet.Dozen.getRandomNumFromArray;
 
-public class ThreeNums {
+public class ThreeNums implements BetType {
 
-    public int[] returnThreeNums() {
+    public int[] playedNumbers() {
         Random rnd = new Random();
         boolean isHorizontal = rnd.nextBoolean();
 
@@ -45,6 +45,10 @@ public class ThreeNums {
             }
         }
         return returnThreeNum;
+    }
+
+    public int getMultiplier() {
+        return 12;
     }
 
 }

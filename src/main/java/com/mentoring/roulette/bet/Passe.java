@@ -2,9 +2,13 @@ package com.mentoring.roulette.bet;
 
 import java.util.stream.IntStream;
 
-public class Passe {
+public class Passe implements BetType {
 
-    public int[] generateRangeFrom1to18() {
+    public int[] playedNumbers() {
         return IntStream.rangeClosed(1, 18).toArray();
+    }
+
+    public int getMultiplier() {
+        return 3;
     }
 }
