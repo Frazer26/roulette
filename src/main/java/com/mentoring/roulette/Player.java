@@ -4,9 +4,11 @@ import com.mentoring.roulette.bet.Bet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.mentoring.roulette.BetHelper.evaulateOneBet;
-import static com.mentoring.roulette.BetHelper.generate;
+import static com.mentoring.roulette.BetHelper.generateRandomBetTypeAndMoney;
 
 public class Player {
 
@@ -30,27 +32,31 @@ public class Player {
         listOfBets.clear();
     }
 
+    public void makeBets() {
+        int randomBetNumbers = ThreadLocalRandom.current().nextInt(1, 4);
+        for(int i=0; i<randomBetNumbers; i++) {
+            makeBet();
+        }
+
+    }
+
     public void makeBet() {
         if (isInPlay) {
-            Bet bet = generate(money);
+            Bet bet = generateRandomBetTypeAndMoney(money);
             int betAmount = bet.getAmount() * -1;
 
             setListOfBets(bet);
-            setMoney(betAmount);
-            lose();
+            setMoney(betAmount); //decrease money
+            stillInGame();
         }
     }
 
-    public void lose() {
-        if (money == 0) {
-            isInPlay = false;
-        } else {
-            isInPlay = true;
-        }
+    public void stillInGame() {
+        isInPlay = money != 0;
     }
 
     public void evaulatePlayer(int winnerNum) { //how much do I win in this round?
-        int prize = 0;
+        int prize;
 //        listOfBets.stream().forEach(n -> evaulateOneBet(n,winnerNum));
         for (Bet bet : listOfBets) {
             prize = evaulateOneBet(bet, winnerNum);
@@ -59,7 +65,7 @@ public class Player {
             playedAmountInRound += bet.getAmount();
         }
         setMoney(fullPrizeInRound);
-        lose();
+        stillInGame();
     }
 
     public String getName() {

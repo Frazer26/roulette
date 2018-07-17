@@ -16,10 +16,10 @@ public class Game {
         game.scanFromConsole();
         for (int i = 1; i <= round; i++) {
             System.out.println(i + ". round:");
-            game.makeBets();
+            game.makeAllBets();
             winnerNum = game.spin();
             game.evaluate(winnerNum);
-            game.clearRoundDatas();
+            game.clearAllRoundData();
         }
 
     }
@@ -30,17 +30,18 @@ public class Game {
         int money;
         System.out.println("How many rounds would you like to play?");
         round = scn.nextInt();
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 1; i <= 4; i++) {  //four player data
             System.out.println("Please write your name: ");
-            name = scn.nextLine();
+            name = scn.next();
             System.out.println("Please give me your money: ");
             money = scn.nextInt();
             listOfPlayers.add(new Player(name, money));
         }
+        scn.close();
     }
 
-    private void makeBets() {
-        listOfPlayers.forEach(Player::makeBet);
+    private void makeAllBets() {
+        listOfPlayers.forEach(Player::makeBets);
     }
 
     private int spin() {
@@ -51,13 +52,13 @@ public class Game {
     private void evaluate(int winnerNum) {
 //        listOfPlayers.forEach(n -> n.evaulatePlayer(winnerNum));
         for (Player player : listOfPlayers) {
-            int i = 0;
+            player.evaulatePlayer(winnerNum);
             System.out.println(player.getName() + ": played amount: " + player.getPlayedAmountInRound() +
                     ", prize: +" + player.getFullPrizeInRound() + ", actual balance: " + player.getMoney());
         }
     }
 
-    private void clearRoundDatas() {
+    private void clearAllRoundData() {
         listOfPlayers.forEach(Player::clearRoundDatas);
     }
 }

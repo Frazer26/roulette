@@ -7,7 +7,7 @@ import java.util.Random;
 
 class BetHelper {
 
-    static Bet generate(int money) {
+    static Bet generateRandomBetTypeAndMoney(int money) {
         Random rnd = new Random();
         int rndmBetAmount = 1 + rnd.nextInt(money - 1) + 1;
         BetType betType = getRandomBetFromArray(makeBetTypeArray());
@@ -42,7 +42,7 @@ class BetHelper {
     static int evaulateOneBet(Bet bet, int winnerNum) {
         int prize = 0;
         BetType betType = bet.getBetType();
-        boolean win = Arrays.stream(betType.playedNumbers()).anyMatch(v -> v == winnerNum);
+        boolean win = Arrays.stream(bet.getPlayedNumbers()).anyMatch(v -> v == winnerNum);
         if (win) {
             prize = betType.getMultiplier() * bet.getAmount();
         }
