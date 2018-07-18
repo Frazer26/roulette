@@ -1,9 +1,6 @@
 package com.mentoring.roulette;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
 
@@ -28,16 +25,21 @@ public class Game {
         Scanner scn = new Scanner(System.in);
         String name;
         int money;
-        System.out.println("How many rounds would you like to play?");
-        round = scn.nextInt();
-        for (int i = 1; i <= 4; i++) {  //four player data
-            System.out.println("Please write your name: ");
-            name = scn.next();
-            System.out.println("Please give me your money: ");
-            money = scn.nextInt();
-            listOfPlayers.add(new Player(name, money));
+        try {
+            System.out.println("How many rounds would you like to play?");
+            round = scn.nextInt();
+            for (int i = 1; i <= 4; i++) {  //four player data
+                System.out.println("Please write your name: ");
+                name = scn.next();
+                System.out.println("Please give me your money: ");
+                money = scn.nextInt();
+                listOfPlayers.add(new Player(name, money));
+            }
+            scn.close();
+        } catch (InputMismatchException e) {
+            System.out.println("That's not an appropriate value. Please try again.");
+            System.exit(0);
         }
-        scn.close();
     }
 
     private void makeAllBets() {
