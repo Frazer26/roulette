@@ -4,7 +4,6 @@ import com.mentoring.roulette.bet.Bet;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static com.mentoring.roulette.BetHelper.evaulateOneBet;
@@ -34,7 +33,7 @@ public class Player {
 
     public void makeBets() {
         int randomBetNumbers = ThreadLocalRandom.current().nextInt(1, 4);
-        for(int i=0; i<randomBetNumbers; i++) {
+        for (int i = 0; i < randomBetNumbers; i++) {
             makeBet();
         }
 

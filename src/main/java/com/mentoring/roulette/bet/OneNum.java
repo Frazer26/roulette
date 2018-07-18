@@ -6,7 +6,7 @@ public class OneNum implements BetType {
 
     public int[] playedNumbers() {
         Random rnd = new Random();
-        return new int[]{rnd.nextInt((36 + 1))};
+        return new int[]{rnd.nextInt((37))};
     }
 
     public int getMultiplier() {

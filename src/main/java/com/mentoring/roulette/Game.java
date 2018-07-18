@@ -48,7 +48,7 @@ public class Game {
 
     private int spin() {
         Random r = new Random();
-        return r.ints(0, (37)).findFirst().getAsInt();
+        return r.nextInt(37);
     }
 
     private void evaluate(int winnerNum) {

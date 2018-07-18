@@ -8,8 +8,7 @@ import java.util.Random;
 class BetHelper {
 
     static Bet generateRandomBetTypeAndMoney(int money) {
-        Random rnd = new Random();
-        int rndmBetAmount = 1 + rnd.nextInt(money - 1) + 1;
+        int rndmBetAmount = generateRandomNumsFromTo(1, money);
         BetType betType = getRandomBetFromArray(makeBetTypeArray());
         return new Bet(betType, rndmBetAmount);
     }
@@ -47,6 +46,11 @@ class BetHelper {
             prize = betType.getMultiplier() * bet.getAmount();
         }
         return prize;
+    }
+
+    static int generateRandomNumsFromTo(int min, int max) {
+        Random rand = new Random();
+        return rand.nextInt((max - min) + 1) + min;
     }
 
 }
