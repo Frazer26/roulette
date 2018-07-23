@@ -12,7 +12,7 @@ public class FourNums implements BetType {
     public int[] playedNumbers() {
         //how to rotate
         Random rnd = new Random();
-        boolean rotate = rnd.nextBoolean();
+        boolean shouldRotate = rnd.nextBoolean();
 
         int[] table = IntStream.rangeClosed(1, 36).toArray();
         int strtNm = getRandomNumFromArray(table);
@@ -20,7 +20,7 @@ public class FourNums implements BetType {
 
         if (strtNm % 3 == 1 || strtNm % 3 == 2) {
             if (strtNm >= 4 && strtNm <= 32) {
-                if (rotate) {
+                if (shouldRotate) {
                     returnRandomFourNumbs[0] = strtNm;
                     returnRandomFourNumbs[1] = strtNm + 1;
                     returnRandomFourNumbs[2] = strtNm + 3;
@@ -45,7 +45,7 @@ public class FourNums implements BetType {
             }
         } else {
             //6-36
-            if (rotate || strtNm == 36) {
+            if (shouldRotate || strtNm == 36) {
                 returnRandomFourNumbs[0] = strtNm;
                 returnRandomFourNumbs[1] = strtNm - 1;
                 returnRandomFourNumbs[2] = strtNm - 3;

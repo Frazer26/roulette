@@ -13,7 +13,7 @@ public class Player {
 
     private String name;
     private int money;
-    private boolean isInPlay;
+    private boolean inPlay;
     private List<Bet> listOfBets;
     private int fullPrizeInRound;
     private int playedAmountInRound;
@@ -21,7 +21,7 @@ public class Player {
     public Player(String name, int money) {
         this.name = name;
         this.money = money;
-        isInPlay = true;
+        inPlay = true;
         listOfBets = new ArrayList<>();
     }
 
@@ -40,7 +40,7 @@ public class Player {
     }
 
     public void makeBet() {
-        if (isInPlay) {
+        if (inPlay) {
             Bet bet = generateRandomBetTypeAndMoney(money);
             int betAmount = bet.getAmount() * -1;
 
@@ -51,7 +51,7 @@ public class Player {
     }
 
     public void stillInGame() {
-        isInPlay = money != 0;
+        inPlay = money != 0;
     }
 
     public void evaulatePlayer(int winnerNum) { //how much do I win in this round?
@@ -84,11 +84,11 @@ public class Player {
     }
 
     public boolean isInPlay() {
-        return isInPlay;
+        return inPlay;
     }
 
     public void setInPlay(boolean inPlay) {
-        isInPlay = inPlay;
+        this.inPlay = inPlay;
     }
 
     public List<Bet> getListOfBets() {

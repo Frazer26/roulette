@@ -41,8 +41,8 @@ class BetHelper {
     static int evaulateOneBet(Bet bet, int winnerNum) {
         int prize = 0;
         BetType betType = bet.getBetType();
-        boolean win = Arrays.stream(bet.getPlayedNumbers()).anyMatch(v -> v == winnerNum);
-        if (win) {
+        boolean isWin = Arrays.stream(bet.getPlayedNumbers()).anyMatch(v -> v == winnerNum);
+        if (isWin) {
             prize = betType.getMultiplier() * bet.getAmount();
         }
         return prize;
