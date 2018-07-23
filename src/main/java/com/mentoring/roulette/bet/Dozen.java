@@ -5,6 +5,8 @@ import java.util.stream.IntStream;
 
 public class Dozen implements BetType {
 
+    private static final int MULTIPLIER = 3;
+
     public int[] playedNumbers() {
         int[] startNums = {1, 13, 25};
         int rndStartNum = getRandomNumFromArray(startNums);
@@ -18,6 +20,6 @@ public class Dozen implements BetType {
     }
 
     public int getMultiplier() {
-        return 3;
+        return MULTIPLIER;
     }
 }

@@ -7,6 +7,8 @@ import static com.mentoring.roulette.bet.Dozen.getRandomNumFromArray;
 
 public class FourNums implements BetType {
 
+    private static final int MULTIPLIER = 3;
+
     public int[] playedNumbers() {
         //how to rotate
         Random rnd = new Random();
@@ -60,7 +62,7 @@ public class FourNums implements BetType {
     }
 
     public int getMultiplier() {
-        return 9;
+        return MULTIPLIER;
     }
 
 }

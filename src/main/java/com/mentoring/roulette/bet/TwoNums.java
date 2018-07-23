@@ -8,8 +8,9 @@ import static com.mentoring.roulette.bet.Dozen.getRandomNumFromArray;
 
 public class TwoNums implements BetType {
 
-    public int[] playedNumbers() {
+    private static final int MULTIPLIER = 18;
 
+    public int[] playedNumbers() {
         Random rnd = new Random();
         int[] table = IntStream.rangeClosed(1, 36).toArray();
         int strtNm = getRandomNumFromArray(table);
@@ -56,6 +57,6 @@ public class TwoNums implements BetType {
     }
 
     public int getMultiplier() {
-        return 18;
+        return MULTIPLIER;
     }
 }

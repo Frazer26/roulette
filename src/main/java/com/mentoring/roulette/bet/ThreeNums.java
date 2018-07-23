@@ -7,6 +7,8 @@ import static com.mentoring.roulette.bet.Dozen.getRandomNumFromArray;
 
 public class ThreeNums implements BetType {
 
+    private static final int MULTIPLIER = 12;
+
     public int[] playedNumbers() {
         Random rnd = new Random();
         boolean isHorizontal = rnd.nextBoolean();
@@ -48,7 +50,7 @@ public class ThreeNums implements BetType {
     }
 
     public int getMultiplier() {
-        return 12;
+        return MULTIPLIER;
     }
 
 }

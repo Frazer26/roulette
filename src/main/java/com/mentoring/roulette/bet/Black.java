@@ -2,6 +2,8 @@ package com.mentoring.roulette.bet;
 
 public class Black implements BetType {
 
+    private static final int MULTIPLIER = 2;
+
     public int[] playedNumbers() {
         int[] blackNums = new int[18];
         int j = 1;
@@ -17,7 +19,7 @@ public class Black implements BetType {
     }
 
     public int getMultiplier() {
-        return 2;
+        return MULTIPLIER;
     }
 
 
