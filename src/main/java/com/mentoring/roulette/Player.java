@@ -13,7 +13,7 @@ public class Player {
     }
 
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -21,19 +21,19 @@ public class Player {
         this.name = name;
     }
 
-    public int getMoney() {
+    int getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
+    void setMoney(int money) {
         this.money += money;
     }
 
-    public boolean isInPlay() {
+    boolean isInPlay() {
         return inPlay;
     }
 
-    public void setInPlay(boolean inPlay) {
+    void setInPlay(boolean inPlay) {
         this.inPlay = inPlay;
     }
 
