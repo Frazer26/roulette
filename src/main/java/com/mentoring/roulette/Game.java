@@ -2,26 +2,13 @@ package com.mentoring.roulette;
 
 import java.util.*;
 
-public class Game {
+class Game {
 
-    private static int round;
+    private int round;
     private List<Player> listOfPlayers = new ArrayList<>();
+    private PlayerService playerService = new PlayerService();
 
-    public static void main(String[] args) {
-        Game game = new Game();
-        int winnerNum;
-        game.scanFromConsole();
-        for (int i = 1; i <= round; i++) {
-            System.out.println(i + ". round:");
-            game.makeAllBets();
-            winnerNum = game.spin();
-            game.evaluate(winnerNum);
-            game.clearAllRoundData();
-        }
-
-    }
-
-    private void scanFromConsole() {
+    void scanFromConsole() {
         Scanner scn = new Scanner(System.in);
         String name;
         int money;
@@ -42,25 +29,28 @@ public class Game {
         }
     }
 
-    private void makeAllBets() {
-        listOfPlayers.forEach(Player::makeBets);
+    void makeAllBets() {
+        listOfPlayers.forEach(n -> playerService.makeBets(n));
     }
 
-    private int spin() {
+    int spin() {
         Random r = new Random();
         return r.nextInt(37);
     }
 
-    private void evaluate(int winnerNum) {
-//        listOfPlayers.forEach(n -> n.evaulatePlayer(winnerNum));
+    void evaluate(int winnerNum) {
         for (Player player : listOfPlayers) {
-            player.evaulatePlayer(winnerNum);
-            System.out.println(player.getName() + ": played amount: " + player.getPlayedAmountInRound() +
-                    ", prize: +" + player.getFullPrizeInRound() + ", actual balance: " + player.getMoney());
+            playerService.evaulatePlayer(player, winnerNum);
+            System.out.println(player.getName() + ": played amount: " + playerService.getPlayedAmountInRound() +
+                    ", prize: +" + playerService.getFullPrizeInRound() + ", actual balance: " + player.getMoney());
         }
     }
 
-    private void clearAllRoundData() {
-        listOfPlayers.forEach(Player::clearRoundDatas);
+    void clearAllRoundData() {
+       playerService.clearRoundDatas();
+    }
+
+    int getRound() {
+        return round;
     }
 }
