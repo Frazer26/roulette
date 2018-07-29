@@ -1,14 +1,5 @@
 package com.mentoring.roulette;
 
-import com.mentoring.roulette.bet.Bet;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
-import static com.mentoring.roulette.BetHelper.evaulateOneBet;
-import static com.mentoring.roulette.BetHelper.generateRandomBetTypeAndMoney;
-
 public class Player {
 
     private String name;
@@ -45,9 +36,6 @@ public class Player {
     public void setInPlay(boolean inPlay) {
         this.inPlay = inPlay;
     }
-
-
-
 
 
 }

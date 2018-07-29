@@ -47,7 +47,7 @@ class Game {
     }
 
     void clearAllRoundData() {
-       playerService.clearRoundDatas();
+        playerService.clearRoundDatas();
     }
 
     int getRound() {

@@ -10,29 +10,29 @@ import java.util.concurrent.ThreadLocalRandom;
 import static com.mentoring.roulette.BetHelper.evaulateOneBet;
 import static com.mentoring.roulette.BetHelper.generateRandomBetTypeAndMoney;
 
-public class PlayerService {
+class PlayerService {
 
     private int fullPrizeInRound;
     private int playedAmountInRound;
     private HashMap<Player, List<Bet>> playersBetsInRound = new HashMap<>();
 
 
-    public void clearRoundDatas() {
+    void clearRoundDatas() {
         fullPrizeInRound = 0;
         playedAmountInRound = 0;
         playersBetsInRound.clear();
     }
 
-    public void makeBets(Player player) {
+    void makeBets(Player player) {
         int randomBetNumbers = ThreadLocalRandom.current().nextInt(1, 4);
         List<Bet> listOfBets = new ArrayList<>();
         for (int i = 0; i < randomBetNumbers; i++) {
             listOfBets.add(makeBet(player));
         }
-        playersBetsInRound.put(player,listOfBets);
+        playersBetsInRound.put(player, listOfBets);
     }
 
-    public Bet makeBet(Player player) {
+    Bet makeBet(Player player) {
         Bet bet = null;
         if (player.isInPlay()) {
             bet = generateRandomBetTypeAndMoney(player.getMoney());
@@ -44,11 +44,11 @@ public class PlayerService {
         return bet;
     }
 
-    public boolean stillInGame(Player player) {
+    boolean stillInGame(Player player) {
         return player.getMoney() != 0;
     }
 
-    public void evaulatePlayer(Player player, int winnerNum) { //how much do I win in this round?
+    void evaulatePlayer(Player player, int winnerNum) { //how much do I win in this round?
         int prize;
         List<Bet> listOfBets = playersBetsInRound.get(player);
 
@@ -62,23 +62,23 @@ public class PlayerService {
         player.setInPlay(stillInGame(player));
     }
 
-    public int getFullPrizeInRound() {
+    int getFullPrizeInRound() {
         return fullPrizeInRound;
     }
 
-    public void setFullPrizeInRound(int fullPrizeInRound) {
+    void setFullPrizeInRound(int fullPrizeInRound) {
         this.fullPrizeInRound = fullPrizeInRound;
     }
 
-    public int getPlayedAmountInRound() {
+    int getPlayedAmountInRound() {
         return playedAmountInRound;
     }
 
-    public void setPlayedAmountInRound(int playedAmountInRound) {
+    void setPlayedAmountInRound(int playedAmountInRound) {
         this.playedAmountInRound = playedAmountInRound;
     }
 
-    public HashMap<Player, List<Bet>> getPlayersBetsInRound() {
+    HashMap<Player, List<Bet>> getPlayersBetsInRound() {
         return playersBetsInRound;
     }
 }
